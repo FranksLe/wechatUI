@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>moreIconName</key>
+	<string></string>
+	<key>emjoIconName</key>
+	<string></string>
+	<key>contentBackgroundImageName</key>
+	<string></string>
+	<key>keyboardIconName</key>
+	<string></string>
+	<key>soundIconName</key>
+	<string></string>
+</dict>
+</plist>
