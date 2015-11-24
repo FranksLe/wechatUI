@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FaceButton.h"
 #import "GrayPageControl.h"
 #define FACE_NAME_HEAD @"/s"
 #define FACE_NAME_LEN 5// 表情转义字符的长度

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250AB7D51C02ED78009C35D5 /* ChatAssistanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AB7D21C02ED78009C35D5 /* ChatAssistanceModel.m */; };
+		250AB7D61C02ED78009C35D5 /* ChatAssistanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 250AB7D41C02ED78009C35D5 /* ChatAssistanceView.m */; };
 		253E97D31BF7026C000B90FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 253E97D21BF7026C000B90FB /* main.m */; };
 		253E97D61BF7026C000B90FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 253E97D51BF7026C000B90FB /* AppDelegate.m */; };
 		253E97D91BF7026C000B90FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 253E97D81BF7026C000B90FB /* ViewController.m */; };
@@ -19,7 +21,6 @@
 		253E97F41BF7093B000B90FB /* CSChatItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 253E97F31BF7093B000B90FB /* CSChatItemsView.m */; };
 		253E97F61BF70BDE000B90FB /* ChatResourse.plist in Resources */ = {isa = PBXBuildFile; fileRef = 253E97F51BF70BDE000B90FB /* ChatResourse.plist */; };
 		253E97F91BF7226A000B90FB /* CSChatCommnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 253E97F81BF7226A000B90FB /* CSChatCommnd.m */; };
-		254E03EA1BFDB82D00F95FE2 /* ChatFuctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 254E03E91BFDB82D00F95FE2 /* ChatFuctionView.m */; };
 		258A98531BFB2DBE00B42E31 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258A98521BFB2DBE00B42E31 /* AVFoundation.framework */; };
 		258A98551BFB2DC500B42E31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258A98541BFB2DC500B42E31 /* UIKit.framework */; };
 		258A98571BFB2DCE00B42E31 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258A98561BFB2DCE00B42E31 /* AudioToolbox.framework */; };
@@ -27,7 +28,6 @@
 		258A985D1BFB421200B42E31 /* UUProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 258A985C1BFB421200B42E31 /* UUProgressHUD.m */; };
 		258A98631BFC556600B42E31 /* GrayPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 258A98621BFC556600B42E31 /* GrayPageControl.m */; };
 		258A98661BFC584D00B42E31 /* FaceBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 258A98651BFC584D00B42E31 /* FaceBoard.m */; };
-		258A98691BFC5F1500B42E31 /* FaceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 258A98681BFC5F1500B42E31 /* FaceButton.m */; };
 		258A986C1BFC6C5500B42E31 /* _expression_cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258A986A1BFC6C5500B42E31 /* _expression_cn.plist */; };
 		258A986D1BFC6C5500B42E31 /* _expression_en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258A986B1BFC6C5500B42E31 /* _expression_en.plist */; };
 		258A9B711BFC6DCE00B42E31 /* 001.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A9AC51BFC6DCD00B42E31 /* 001.png */; };
@@ -202,10 +202,17 @@
 		258A9C1A1BFC6DCE00B42E31 /* 085@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A9B6E1BFC6DCE00B42E31 /* 085@2x.png */; };
 		258A9C1B1BFC6DCE00B42E31 /* _expression_cn.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258A9B6F1BFC6DCE00B42E31 /* _expression_cn.plist */; };
 		258A9C1C1BFC6DCE00B42E31 /* _expression_en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258A9B701BFC6DCE00B42E31 /* _expression_en.plist */; };
+		258B150C1C043E8B006B1934 /* CSChatItemFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B150B1C043E8B006B1934 /* CSChatItemFrame.m */; };
+		258B150E1C043FFD006B1934 /* ChatContent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258B150D1C043FFD006B1934 /* ChatContent.plist */; };
+		258B15111C0455AA006B1934 /* CSChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 258B15101C0455AA006B1934 /* CSChatModel.m */; };
 		752AEBF8621944759EAD3832 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2385649C44E882702CCA436 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		250AB7D11C02ED78009C35D5 /* ChatAssistanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatAssistanceModel.h; sourceTree = "<group>"; };
+		250AB7D21C02ED78009C35D5 /* ChatAssistanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAssistanceModel.m; sourceTree = "<group>"; };
+		250AB7D31C02ED78009C35D5 /* ChatAssistanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatAssistanceView.h; sourceTree = "<group>"; };
+		250AB7D41C02ED78009C35D5 /* ChatAssistanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatAssistanceView.m; sourceTree = "<group>"; };
 		253E97CE1BF7026C000B90FB /* CSChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253E97D21BF7026C000B90FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		253E97D41BF7026C000B90FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -227,8 +234,6 @@
 		253E97F51BF70BDE000B90FB /* ChatResourse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChatResourse.plist; sourceTree = "<group>"; };
 		253E97F71BF7226A000B90FB /* CSChatCommnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSChatCommnd.h; sourceTree = "<group>"; };
 		253E97F81BF7226A000B90FB /* CSChatCommnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSChatCommnd.m; sourceTree = "<group>"; };
-		254E03E81BFDB82D00F95FE2 /* ChatFuctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatFuctionView.h; sourceTree = "<group>"; };
-		254E03E91BFDB82D00F95FE2 /* ChatFuctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatFuctionView.m; sourceTree = "<group>"; };
 		258A98521BFB2DBE00B42E31 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		258A98541BFB2DC500B42E31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		258A98561BFB2DCE00B42E31 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -239,8 +244,6 @@
 		258A98621BFC556600B42E31 /* GrayPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrayPageControl.m; sourceTree = "<group>"; };
 		258A98641BFC584D00B42E31 /* FaceBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceBoard.h; sourceTree = "<group>"; };
 		258A98651BFC584D00B42E31 /* FaceBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceBoard.m; sourceTree = "<group>"; };
-		258A98671BFC5F1500B42E31 /* FaceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceButton.h; sourceTree = "<group>"; };
-		258A98681BFC5F1500B42E31 /* FaceButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceButton.m; sourceTree = "<group>"; };
 		258A986A1BFC6C5500B42E31 /* _expression_cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _expression_cn.plist; sourceTree = "<group>"; };
 		258A986B1BFC6C5500B42E31 /* _expression_en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _expression_en.plist; sourceTree = "<group>"; };
 		258A9AC51BFC6DCD00B42E31 /* 001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 001.png; sourceTree = "<group>"; };
@@ -415,6 +418,11 @@
 		258A9B6E1BFC6DCE00B42E31 /* 085@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "085@2x.png"; sourceTree = "<group>"; };
 		258A9B6F1BFC6DCE00B42E31 /* _expression_cn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _expression_cn.plist; sourceTree = "<group>"; };
 		258A9B701BFC6DCE00B42E31 /* _expression_en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _expression_en.plist; sourceTree = "<group>"; };
+		258B150A1C043E8B006B1934 /* CSChatItemFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSChatItemFrame.h; sourceTree = "<group>"; };
+		258B150B1C043E8B006B1934 /* CSChatItemFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSChatItemFrame.m; sourceTree = "<group>"; };
+		258B150D1C043FFD006B1934 /* ChatContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChatContent.plist; sourceTree = "<group>"; };
+		258B150F1C0455AA006B1934 /* CSChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSChatModel.h; sourceTree = "<group>"; };
+		258B15101C0455AA006B1934 /* CSChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSChatModel.m; sourceTree = "<group>"; };
 		5E271CA2F5328C01FA8DB266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A2385649C44E882702CCA436 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC30119932A92FC5466C43AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -445,10 +453,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		250AB7D01C02ED78009C35D5 /* ChatAssistance */ = {
+			isa = PBXGroup;
+			children = (
+				250AB7D11C02ED78009C35D5 /* ChatAssistanceModel.h */,
+				250AB7D21C02ED78009C35D5 /* ChatAssistanceModel.m */,
+				250AB7D31C02ED78009C35D5 /* ChatAssistanceView.h */,
+				250AB7D41C02ED78009C35D5 /* ChatAssistanceView.m */,
+			);
+			name = ChatAssistance;
+			path = CSChatDemo/ChatAssistance;
+			sourceTree = "<group>";
+		};
 		253E97C51BF7026C000B90FB = {
 			isa = PBXGroup;
 			children = (
-				254E03E71BFDB7FF00F95FE2 /* ChatFuctionView */,
+				250AB7D01C02ED78009C35D5 /* ChatAssistance */,
 				258A985E1BFC527C00B42E31 /* FaceBoard */,
 				258A985A1BFB41D400B42E31 /* UUProgress */,
 				253E97E81BF7052B000B90FB /* ChatFramework */,
@@ -495,28 +515,23 @@
 			isa = PBXGroup;
 			children = (
 				253E97F51BF70BDE000B90FB /* ChatResourse.plist */,
+				258B150D1C043FFD006B1934 /* ChatContent.plist */,
 				253E97E91BF70549000B90FB /* CSChatToolView.h */,
 				253E97EA1BF70549000B90FB /* CSChatToolView.m */,
+				258B150F1C0455AA006B1934 /* CSChatModel.h */,
+				258B15101C0455AA006B1934 /* CSChatModel.m */,
 				253E97EC1BF70701000B90FB /* CSChatVIewModel.h */,
 				253E97ED1BF70701000B90FB /* CSChatVIewModel.m */,
 				253E97EF1BF70713000B90FB /* CSChatViewController.h */,
 				253E97F01BF70713000B90FB /* CSChatViewController.m */,
 				253E97F21BF7093B000B90FB /* CSChatItemsView.h */,
 				253E97F31BF7093B000B90FB /* CSChatItemsView.m */,
+				258B150A1C043E8B006B1934 /* CSChatItemFrame.h */,
+				258B150B1C043E8B006B1934 /* CSChatItemFrame.m */,
 				253E97F71BF7226A000B90FB /* CSChatCommnd.h */,
 				253E97F81BF7226A000B90FB /* CSChatCommnd.m */,
 			);
 			path = ChatFramework;
-			sourceTree = "<group>";
-		};
-		254E03E71BFDB7FF00F95FE2 /* ChatFuctionView */ = {
-			isa = PBXGroup;
-			children = (
-				254E03E81BFDB82D00F95FE2 /* ChatFuctionView.h */,
-				254E03E91BFDB82D00F95FE2 /* ChatFuctionView.m */,
-			);
-			name = ChatFuctionView;
-			path = CSChatDemo/ChatFuctionView;
 			sourceTree = "<group>";
 		};
 		258A985A1BFB41D400B42E31 /* UUProgress */ = {
@@ -537,8 +552,6 @@
 				258A986B1BFC6C5500B42E31 /* _expression_en.plist */,
 				258A98641BFC584D00B42E31 /* FaceBoard.h */,
 				258A98651BFC584D00B42E31 /* FaceBoard.m */,
-				258A98671BFC5F1500B42E31 /* FaceButton.h */,
-				258A98681BFC5F1500B42E31 /* FaceButton.m */,
 				258A98611BFC556600B42E31 /* GrayPageControl.h */,
 				258A98621BFC556600B42E31 /* GrayPageControl.m */,
 			);
@@ -853,6 +866,7 @@
 				258A9BB31BFC6DCE00B42E31 /* 034.png in Resources */,
 				258A9B751BFC6DCE00B42E31 /* 003.png in Resources */,
 				258A9BC91BFC6DCE00B42E31 /* 045.png in Resources */,
+				258B150E1C043FFD006B1934 /* ChatContent.plist in Resources */,
 				258A9BFD1BFC6DCE00B42E31 /* 071.png in Resources */,
 				258A9BDF1BFC6DCE00B42E31 /* 056.png in Resources */,
 				258A9BDC1BFC6DCE00B42E31 /* 054@2x.png in Resources */,
@@ -1018,16 +1032,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				258B150C1C043E8B006B1934 /* CSChatItemFrame.m in Sources */,
 				253E97EE1BF70701000B90FB /* CSChatVIewModel.m in Sources */,
 				258A98631BFC556600B42E31 /* GrayPageControl.m in Sources */,
-				254E03EA1BFDB82D00F95FE2 /* ChatFuctionView.m in Sources */,
-				258A98691BFC5F1500B42E31 /* FaceButton.m in Sources */,
 				253E97F41BF7093B000B90FB /* CSChatItemsView.m in Sources */,
+				258B15111C0455AA006B1934 /* CSChatModel.m in Sources */,
 				258A98661BFC584D00B42E31 /* FaceBoard.m in Sources */,
 				253E97D91BF7026C000B90FB /* ViewController.m in Sources */,
 				253E97F11BF70713000B90FB /* CSChatViewController.m in Sources */,
 				253E97D61BF7026C000B90FB /* AppDelegate.m in Sources */,
+				250AB7D51C02ED78009C35D5 /* ChatAssistanceModel.m in Sources */,
 				253E97F91BF7226A000B90FB /* CSChatCommnd.m in Sources */,
+				250AB7D61C02ED78009C35D5 /* ChatAssistanceView.m in Sources */,
 				253E97EB1BF70549000B90FB /* CSChatToolView.m in Sources */,
 				253E97D31BF7026C000B90FB /* main.m in Sources */,
 				258A985D1BFB421200B42E31 /* UUProgressHUD.m in Sources */,

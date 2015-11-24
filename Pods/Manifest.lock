@@ -1,5 +1,6 @@
 PODS:
   - EaseMobSDK (2.1.9)
+  - JSONModel (1.1.2)
   - Masonry (0.6.3)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -7,11 +8,13 @@ PODS:
 
 DEPENDENCIES:
   - EaseMobSDK
+  - JSONModel
   - Masonry
   - SDWebImage
 
 SPEC CHECKSUMS:
   EaseMobSDK: cc8415cb99a65debf4711fa2c9c349fd5c843299
+  JSONModel: 216584d0311b053ff714f1d6cb700dbf890847bc
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 

@@ -13,4 +13,5 @@
 
 - (void)sendMessageWithText:(NSString *)text;
 - (void)sendMessageWithSound;
+
 @end

@@ -18,6 +18,7 @@
 #import <Masonry/Masonry.h>
 #import "UUProgressHUD.h"
 #import "FaceBoard.h"
+#import "ChatAssistanceView.h"
 @interface CSChatToolView ()<UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate,FaceBoardDelegate>
 
 @property (strong ,nonatomic) FaceBoard *faceBoard;
@@ -36,6 +37,7 @@
 @property (strong ,nonatomic) AVAudioRecorder *recorder;
 @property (assign ,nonatomic) CGFloat recordTime;// 录音时间
 @property (strong ,nonatomic) NSTimer *recordTimer;// 定时器
+@property (strong ,nonatomic) ChatAssistanceView *assistanceView;
 @end
 @implementation CSChatToolView
 
@@ -92,6 +94,9 @@
     _faceBoard = [[FaceBoard alloc] init];
     _faceBoard.inputTextView = _contentTextView;
     
+    _assistanceView = [[ChatAssistanceView alloc] init];
+    _assistanceView.assistanceText = _contentTextView;
+
     _talkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_talkBtn setTitle:@"按住说话" forState:UIControlStateNormal];
     [_talkBtn setTitle:@"松开结束" forState:UIControlStateHighlighted];
@@ -232,8 +237,6 @@
         _talkBtn.hidden = TRUE;
         [sender setBackgroundImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
         [self setKeyboardHidden:FALSE];
-       NSLog(@"切换到文字输入");
-
         //选中状态事件
     }else{
         // 文字输入
@@ -241,18 +244,27 @@
         _talkBtn.hidden = FALSE;
         [sender setBackgroundImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
         [self setKeyboardHidden:TRUE];
-        NSLog(@"切换到语音输入");
-
         //未选中状态事件
     }
-    
     sender.selected = !sender.selected;
 }
 
 - (void)moreItemAction:(UIButton *)sender{
-    [_contentTextView resignFirstResponder];
-    NSLog(@"更多选项");
+    if (sender.selected) {
+        [_contentTextView resignFirstResponder];
+        _contentTextView.inputView = nil;
+        [_contentTextView becomeFirstResponder];
+    }else{
+        [_contentTextView resignFirstResponder];
+        _contentTextView.inputView = _assistanceView;
+        [_contentTextView becomeFirstResponder];
+    }
+     _contentTextView.hidden = FALSE;
+    _emojiBtn.selected = FALSE;
+    _messageBtn.selected = FALSE;
+    sender.selected = !sender.selected;
 }
+
 - (void)emojiAction:(UIButton *)sender{
     if (sender.selected) {
         [sender setBackgroundImage:[UIImage imageNamed:@"ToolViewEmotionHL"] forState:UIControlStateHighlighted];
@@ -265,8 +277,10 @@
         _contentTextView.inputView = _faceBoard;
         [_contentTextView becomeFirstResponder];
     }
+    _contentTextView.hidden = FALSE;
+    _moreItemBtn.selected = FALSE;
+    _messageBtn.selected = FALSE;
     sender.selected = !sender.selected;
-  
 }
 
 #pragma mark 开始录音
@@ -307,12 +321,10 @@
 {
     [UUProgressHUD dismissWithSuccess:nil];
     [self.recorder stop];
-    
 }
 
 - (void)cancelRecordVoice:(UIButton *)button
 {
-   
     [self.recorder stop];
     [self.recorder deleteRecording];
     [UUProgressHUD dismissWithError:@"取消"];
@@ -320,7 +332,6 @@
 
 - (void)remindDragExit:(UIButton *)button
 {
-    
     [UUProgressHUD changeSubTitle:@"松开手指,取消发送"];
 }
 
@@ -336,6 +347,7 @@
 {
     [UUProgressHUD changeSubTitle:@"向上滑动取消"];
 }
+
 #pragma AVAudioRecordDeleagte
 -(void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
 {
@@ -371,14 +383,12 @@
     }else{
         [_contentTextView becomeFirstResponder];
     }
-
 }
 #pragma mark Private
 
 #pragma mark TextView_Delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    
     if ([text isEqualToString:@"\n"]) {
     
         if ([_observer respondsToSelector:@selector(sendMessageWithText:)]) {
@@ -387,7 +397,6 @@
            textView.text = nil;
         return NO;
     }
-    
     return YES;
 }
 #pragma mark 释放对象

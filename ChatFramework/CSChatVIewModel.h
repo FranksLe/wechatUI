@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface CSChatVIewModel : NSObject
+@property (nonatomic ,strong) NSMutableArray *cSChatContentArray;
+
+
 
 @end

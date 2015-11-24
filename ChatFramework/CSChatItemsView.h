@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CSChatItemFrame.h"
 
-@interface CSChatItemsView : UIView
+@interface CSChatItemsView : UITableViewCell
+
+@property (nonatomic ,strong) CSChatItemFrame *messageFrame;
 
 @end

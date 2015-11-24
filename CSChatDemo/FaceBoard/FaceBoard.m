@@ -60,9 +60,9 @@
         faceView.delegate = self;
         
         for (int i = 1; i <= FACE_COUNT_ALL; i++) {
-            FaceButton *faceButton = [FaceButton buttonWithType:UIButtonTypeCustom];
-            faceButton.buttonIndex = i;
+            UIButton *faceButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [faceButton addTarget:self action:@selector(faceButton:) forControlEvents:UIControlEventTouchUpInside];
+            faceButton.tag = i;
             CGFloat x = (((i - 1) % FACE_COUNT_PAGE) % FACE_COUNT_CLU) * FACE_ICON_SIZE + 6 + ((i - 1) / FACE_COUNT_PAGE * SCREENWIDTH);
             CGFloat y = (((i - 1) % FACE_COUNT_PAGE) / FACE_COUNT_CLU) * FACE_ICON_SIZE + 8;
             faceButton.frame = CGRectMake( x, y, FACE_ICON_SIZE, FACE_ICON_SIZE);
@@ -110,7 +110,7 @@
 
 - (void)faceButton:(id)sender {
     
-    NSInteger i = ((FaceButton*)sender).buttonIndex;
+    NSInteger i = ((UIButton*)sender).tag;
     if (self.inputTextFiel) {
         
         NSMutableString *faceString = [[NSMutableString alloc]initWithString:self.inputTextFiel.text];

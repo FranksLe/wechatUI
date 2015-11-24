@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>chatContent</key>
+	<array>
+		<dict>
+			<key>content</key>
+			<string>你好!</string>
+			<key>icon</key>
+			<string>iconHead2</string>
+			<key>time</key>
+			<string>前天10:49</string>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string>你好! 约嘛!</string>
+			<key>icon</key>
+			<string>iconHead1</string>
+			<key>time</key>
+			<string>前天11:08</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string>叔叔 能不约嘛!</string>
+			<key>icon</key>
+			<string>iconHead2</string>
+			<key>time</key>
+			<string>前天11:09</string>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string> 人生苦短 及时行乐</string>
+			<key>icon</key>
+			<string>iconHead1</string>
+			<key>time</key>
+			<string>昨天8:30</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string>山炮</string>
+			<key>icon</key>
+			<string>iconHead2</string>
+			<key>time</key>
+			<string>昨天9:20</string>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string>你好 你是 大呲花</string>
+			<key>icon</key>
+			<string>iconHead1</string>
+			<key>time</key>
+			<string>昨天11:20</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string>每次我都立刻回复你内容, 你总是慢半拍, 叔叔你反射弧怎么那么长呢 你好像是赵四 一天天二逼呵呵的!</string>
+			<key>icon</key>
+			<string>iconHead2</string>
+			<key>time</key>
+			<string>昨天13:55</string>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string>反射弧让狗吃了  约一下给叔叔治疗一下</string>
+			<key>icon</key>
+			<string>iconHead1</string>
+			<key>time</key>
+			<string>10:20</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>content</key>
+			<string>约约约 约你妹啊 ! </string>
+			<key>icon</key>
+			<string>iconHead2</string>
+			<key>time</key>
+			<string>10:47</string>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
