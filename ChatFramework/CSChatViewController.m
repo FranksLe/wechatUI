@@ -6,18 +6,12 @@
 //  Copyright © 2015年 Chausson. All rights reserved.
 //
 
-#import "CSChatToolView.h"
+
 #import "CSChatViewController.h"
 #import <Masonry/Masonry.h>
-#import "CSChatVIewModel.h"
-#import "CSChatItemFrame.h"
-#import "CSChatItemsView.h"
-@interface CSChatViewController ()<CSChatToolViewKeyboardProtcol, UITableViewDataSource, UITableViewDelegate>
-@property (strong ,nonatomic) CSChatToolView *chatView;
-@property (strong ,nonatomic) UITableView *chatTableView;
-@property (strong ,nonatomic) CSChatVIewModel *viewModel;
-@property (strong ,nonatomic) NSMutableArray *array;
-@end
+#import "CSChatCell.h"
+
+
 
 @implementation CSChatViewController
 #pragma mark init
@@ -35,20 +29,12 @@
 
 - (void) layOutsubviews
 {
-    _chatTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 50) style:UITableViewStylePlain];
-    _chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _chatTableView.allowsSelection = NO;
+    _chatTableView = [[CSChatTableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 50) style:UITableViewStylePlain];
+    //fix me 修改成约束布局
     _chatTableView.delegate = self;
     _chatTableView.dataSource = self;
-    _array = [NSMutableArray array];
     _viewModel = [[CSChatVIewModel alloc] init];
-    NSString *previousTime = nil;
-    for (int i = 0; i < _viewModel.cSChatContentArray.count; i++) {
-        CSChatItemFrame *messageFrame = [[CSChatItemFrame alloc] init];
-        messageFrame.showTime = ![previousTime isEqualToString:[[_viewModel.cSChatContentArray objectAtIndex:i] time]];
-        messageFrame.message = [_viewModel.cSChatContentArray objectAtIndex:i];
-        [_array addObject:messageFrame];
-    }
+    
     [self.view addSubview:_chatTableView];
     [self.view addSubview:_chatView];
 }
@@ -56,22 +42,22 @@
 #pragma mark UITableViewDelagate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _array.count;
+    return self.viewModel.cellViewModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    CSChatItemsView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CSChatCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[CSChatItemsView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CSChatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.messageFrame = _array[indexPath.row];
+    [cell loadViewModel:self.viewModel.cellViewModels[indexPath.row]];
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [_array[indexPath.row] cellHeight];
+    return [self.viewModel.cellViewModels[indexPath.row] cellHeight];
 }
 
 

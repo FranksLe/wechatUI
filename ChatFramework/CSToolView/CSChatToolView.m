@@ -20,7 +20,7 @@
 #import "FaceBoard.h"
 #import "ChatAssistanceView.h"
 @interface CSChatToolView ()<UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate,FaceBoardDelegate>
-
+@property (strong ,nonatomic) ChatAssistanceView *assistanceView;
 @property (strong ,nonatomic) FaceBoard *faceBoard;
 @property (strong ,nonatomic) UIView *chatInputView; // 键盘表情输入框视图
 @property (strong ,nonatomic) UIImageView *backgroundView;
@@ -37,7 +37,7 @@
 @property (strong ,nonatomic) AVAudioRecorder *recorder;
 @property (assign ,nonatomic) CGFloat recordTime;// 录音时间
 @property (strong ,nonatomic) NSTimer *recordTimer;// 定时器
-@property (strong ,nonatomic) ChatAssistanceView *assistanceView;
+
 @end
 @implementation CSChatToolView
 
@@ -255,6 +255,7 @@
         _contentTextView.inputView = nil;
         [_contentTextView becomeFirstResponder];
     }else{
+    
         [_contentTextView resignFirstResponder];
         _contentTextView.inputView = _assistanceView;
         [_contentTextView becomeFirstResponder];
