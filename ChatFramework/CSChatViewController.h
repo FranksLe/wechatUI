@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CSChatViewController : UIViewController
-
+#import "CSChatVIewModel.h"
+#import "CSChatToolView.h"
+#import "CSChatTableView.h"
+@interface CSChatViewController : UIViewController<CSChatToolViewKeyboardProtcol, UITableViewDataSource, UITableViewDelegate>
+@property (strong ,nonatomic) CSChatToolView *chatView;
+@property (strong ,nonatomic) CSChatTableView *chatTableView;
+@property (strong ,nonatomic) CSChatVIewModel *viewModel;
 @end

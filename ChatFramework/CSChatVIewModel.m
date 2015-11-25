@@ -18,10 +18,13 @@
         NSString *plistPath = [[NSBundle mainBundle] pathForResource:CSCHAT_PLIST_FILENAME ofType:@"plist"];
         NSDictionary *dic = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
         NSError *error;
-        _cSChatContentArray = [NSMutableArray array];
+        _cellViewModels = [NSMutableArray array];
+
         CSChatModel *model = [[CSChatModel alloc] initWithDictionary:dic error:&error];
-        for (CSChatVIewItemModel *models in model.chatContent) {
-            [_cSChatContentArray addObject:models];
+        for (int i = 0; i < model.chatContent.count; i++) {
+            CSChatCellViewModel *cellViewModel = [[CSChatCellViewModel alloc]initWithModel:model.chatContent[i]];
+
+            [_cellViewModels addObject:cellViewModel];
         }
     }
     return self;
