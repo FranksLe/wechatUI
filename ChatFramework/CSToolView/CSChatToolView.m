@@ -22,7 +22,6 @@
 @interface CSChatToolView ()<UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate,FaceBoardDelegate>
 @property (strong ,nonatomic) ChatAssistanceView *assistanceView;
 @property (strong ,nonatomic) FaceBoard *faceBoard;
-@property (strong ,nonatomic) UIView *chatInputView; // 键盘表情输入框视图
 @property (strong ,nonatomic) UIImageView *backgroundView;
 @property (strong ,nonatomic) UIButton *messageBtn;
 @property (strong ,nonatomic) UIButton *moreItemBtn;
@@ -59,7 +58,6 @@
 }
 #pragma mark Layoutsubviews
 - (void)initInputView{
-    _chatInputView = [[UIView alloc]init];
     // 键盘隐藏的frame
     // FIX ME 以后修改成约束
     
@@ -91,11 +89,9 @@
     _contentTextView.delegate = self;
     _contentTextView.returnKeyType = UIReturnKeySend;
     
-    _faceBoard = [[FaceBoard alloc] init];
-    _faceBoard.inputTextView = _contentTextView;
-    
-    _assistanceView = [[ChatAssistanceView alloc] init];
-    _assistanceView.assistanceText = _contentTextView;
+    _faceBoard = [[FaceBoard alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, KASSIGANTVIEW_HEIGHT)];
+    _faceBoard.FaceDelegate = self;
+    _assistanceView = [[ChatAssistanceView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, KASSIGANTVIEW_HEIGHT)];
 
     _talkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_talkBtn setTitle:@"按住说话" forState:UIControlStateNormal];
@@ -113,19 +109,16 @@
 }
 
 - (void)addSubviewsAndAutoLayout{
-    [self addSubview:_chatInputView];
     [_contentView addSubview:_contentBackground];
     [_contentView addSubview:_talkBtn];
     [_contentView addSubview:_contentTextView];
-    [_chatInputView addSubview:_messageBtn];
-    [_chatInputView addSubview:_moreItemBtn];
-    [_chatInputView addSubview:_emojiBtn];
-    [_chatInputView addSubview:_contentView];
-    [_chatInputView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(0);
-        make.left.and.right.offset(0);
-        make.height.equalTo(@(KINPUTVIEW_HEIGHT));
-    }];
+    [self addSubview:_messageBtn];
+    [self addSubview:_moreItemBtn];
+    [self addSubview:_emojiBtn];
+    [self addSubview:_contentView];
+    [self addSubview:_faceBoard];
+    [self addSubview:_assistanceView];
+    [_faceBoard bringSubviewToFront:self];
     [_messageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.top.offset(KGAP*2);
         make.height.and.width.equalTo(@(KBUTTON_SIZE));
@@ -133,7 +126,7 @@
     [_moreItemBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_messageBtn);
         make.height.and.width.equalTo(@(KBUTTON_SIZE));
-        make.right.equalTo(_chatInputView).offset(-KGAP);
+        make.right.equalTo(self).offset(-KGAP);
     }];
     [_emojiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_messageBtn);
@@ -141,7 +134,7 @@
         make.right.equalTo(_moreItemBtn.mas_left).offset(-KGAP*2);
     }];
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_chatInputView).offset(KGAP);
+        make.top.equalTo(self).offset(KGAP);
         make.height.equalTo(@(KBUTTON_SIZE+2*KGAP));
         make.left.equalTo(_messageBtn.mas_right).offset(KGAP*2);
         make.right.equalTo(_emojiBtn.mas_left).offset(-KGAP*2);
@@ -202,8 +195,14 @@
         self.frame = _showkeyboardRect;
         // 更改输入框的位置
     }];
-
     
+}
+
+#pragma mark faceDelegat
+
+-(void)clickFaceBoard:(NSMutableString *)String
+{
+    _contentTextView.text = String;
 }
 
 #pragma mark 键盘隐藏的监听方法
@@ -213,18 +212,21 @@
         [_observer chatKeyboardWillHide];
     }
 
-    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+//    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+//    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
     
     // 动画改变位置
-    [UIView animateWithDuration:[duration doubleValue] animations:^{
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationDuration:[duration doubleValue]];
-        [UIView setAnimationCurve:[curve intValue]];
-        // 更改输入框的位置
-        _showkeyboardRect = _hiddenKeyboardRect;
-        self.frame = _hiddenKeyboardRect;
-
+//    [UIView animateWithDuration:[duration doubleValue] animations:^{
+//        [UIView setAnimationBeginsFromCurrentState:YES];
+//        [UIView setAnimationDuration:[duration doubleValue]];
+//        [UIView setAnimationCurve:[curve intValue]];
+//        // 更改输入框的位置
+//        _showkeyboardRect = _hiddenKeyboardRect;
+//        self.frame = _hiddenKeyboardRect;
+//
+//    }];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KASSIGANTVIEW_HEIGHT - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
     }];
 }
 
@@ -244,6 +246,9 @@
         _talkBtn.hidden = FALSE;
         [sender setBackgroundImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
         [self setKeyboardHidden:TRUE];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
+        }];
         //未选中状态事件
     }
     sender.selected = !sender.selected;
@@ -251,36 +256,55 @@
 
 - (void)moreItemAction:(UIButton *)sender{
     if (sender.selected) {
-        [_contentTextView resignFirstResponder];
-        _contentTextView.inputView = nil;
+        [UIView animateWithDuration:0.25 animations:^{
+            [_assistanceView setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, 216)];
+            
+        }];
         [_contentTextView becomeFirstResponder];
     }else{
-    
+        [UIView animateWithDuration:0.25 animations:^{
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KASSIGANTVIEW_HEIGHT - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
+            
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
+            [_assistanceView setFrame:CGRectMake(0, KINPUTVIEW_HEIGHT, [UIScreen mainScreen].bounds.size.width, 216)];
+            
+        }];
         [_contentTextView resignFirstResponder];
-        _contentTextView.inputView = _assistanceView;
-        [_contentTextView becomeFirstResponder];
     }
      _contentTextView.hidden = FALSE;
     _emojiBtn.selected = FALSE;
     _messageBtn.selected = FALSE;
+    _assistanceView.hidden = NO;
+    _faceBoard.hidden = YES;
     sender.selected = !sender.selected;
 }
 
 - (void)emojiAction:(UIButton *)sender{
     if (sender.selected) {
         [sender setBackgroundImage:[UIImage imageNamed:@"ToolViewEmotionHL"] forState:UIControlStateHighlighted];
-        [_contentTextView resignFirstResponder];
-        _contentTextView.inputView = nil;
+        [UIView animateWithDuration:0.25 animations:^{
+            [_faceBoard setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, 216)];
+        
+        }];
         [_contentTextView becomeFirstResponder];
     }else{
         [sender setBackgroundImage:[UIImage imageNamed:@"ToolViewKeyboardHL"] forState:UIControlStateHighlighted];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KASSIGANTVIEW_HEIGHT - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
+            [_faceBoard setFrame:CGRectMake(0, KINPUTVIEW_HEIGHT, [UIScreen mainScreen].bounds.size.width, 216)];
+            
+        }];
         [_contentTextView resignFirstResponder];
-        _contentTextView.inputView = _faceBoard;
-        [_contentTextView becomeFirstResponder];
+       
     }
     _contentTextView.hidden = FALSE;
     _moreItemBtn.selected = FALSE;
     _messageBtn.selected = FALSE;
+    _faceBoard.hidden = NO;
+    _assistanceView.hidden = YES;
     sender.selected = !sender.selected;
 }
 

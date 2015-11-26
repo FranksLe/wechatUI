@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "GrayPageControl.h"
 @interface ChatAssistanceView : UIView
-@property (strong ,nonatomic) UITextView *assistanceText;
 
 @end

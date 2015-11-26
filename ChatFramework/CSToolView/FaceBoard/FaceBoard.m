@@ -33,17 +33,14 @@
 @end
 
 @implementation FaceBoard
-@synthesize inputTextFiel = _inputTextFiel;
-@synthesize inputTextView = _inputTextView;
 
--(instancetype)init
+-(instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 216)];
+    self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:236.0/ 255.0 green:236.0/255.0 blue:236.0 / 255.0 alpha:1];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
-       // NSLog(@"wwww %@" , languages);
         if ([[languages objectAtIndex:0] hasPrefix:@"zh"]) {
             _faceMap = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"_expression_cn" ofType:@"plist"]];
         }else{
@@ -57,8 +54,8 @@
         faceView.contentSize = CGSizeMake((FACE_COUNT_ALL / FACE_COUNT_PAGE + 1) * SCREENWIDTH, 190);
         faceView.showsHorizontalScrollIndicator = NO;
         faceView.showsVerticalScrollIndicator = NO;
-        faceView.delegate = self;
         
+        self.faceString = [NSMutableString string];
         for (int i = 1; i <= FACE_COUNT_ALL; i++) {
             UIButton *faceButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [faceButton addTarget:self action:@selector(faceButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -109,66 +106,14 @@
 }
 
 - (void)faceButton:(id)sender {
-    
-    NSInteger i = ((UIButton*)sender).tag;
-    if (self.inputTextFiel) {
-        
-        NSMutableString *faceString = [[NSMutableString alloc]initWithString:self.inputTextFiel.text];
-        [faceString appendString:[_faceMap objectForKey:[NSString stringWithFormat:@"%03ld", (long)i]]];
-        self.inputTextFiel.text = faceString;
-    }
-    
-    if (self.inputTextView) {
-        NSMutableString *faceString = [[NSMutableString alloc]initWithString:self.inputTextView.text];
-        [faceString appendString:[_faceMap objectForKey:[NSString stringWithFormat:@"%03ld", (long)i]]];
-        self.inputTextView.text = faceString;
-    }
+    NSInteger i = ((UIButton *)sender).tag;
+    [self.faceString appendString:[_faceMap objectForKey:[NSString stringWithFormat:@"%03ld", (long)i]]];
+    [self.FaceDelegate clickFaceBoard:self.faceString];
 }
 
 - (void)backFace{
-    
-    NSString *inputString;
-    inputString = self.inputTextFiel.text;
-    if ( self.inputTextView ) {
-        
-        inputString = self.inputTextView.text;
-    }
-    
-    if ( inputString.length ) {
-        
-        NSString *string = nil;
-        NSInteger stringLength = inputString.length;
-        if ( stringLength >= FACE_NAME_LEN ) {
-            
-            string = [inputString substringFromIndex:stringLength - FACE_NAME_LEN];
-            NSRange range = [string rangeOfString:FACE_NAME_HEAD];
-            if ( range.location == 0 ) {
-                
-                string = [inputString substringToIndex:
-                          [inputString rangeOfString:FACE_NAME_HEAD
-                                             options:NSBackwardsSearch].location];
-            }
-            else {
-                
-                string = [inputString substringToIndex:stringLength - 1];
-            }
-        }
-        else {
-            
-            string = [inputString substringToIndex:stringLength - 1];
-        }
-        
-        if ( self.inputTextFiel ) {
-            
-            self.inputTextFiel.text = string;
-        }
-        
-        if ( self.inputTextView ) {
-            
-            self.inputTextView.text = string;
-            
-        }
-    }
+   
+
 }
 
 

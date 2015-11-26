@@ -30,6 +30,7 @@
 - (void) layOutsubviews
 {
     _chatTableView = [[CSChatTableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 50) style:UITableViewStylePlain];
+    _chatTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     //fix me 修改成约束布局
     _chatTableView.delegate = self;
     _chatTableView.dataSource = self;

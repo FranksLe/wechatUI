@@ -12,16 +12,13 @@
 #define FACE_NAME_LEN 5// 表情转义字符的长度
 
 @protocol FaceBoardDelegate <NSObject>
-
+- (void)clickFaceBoard:(NSMutableString *)String;
 @optional
-
-
 @end
 
 @interface FaceBoard : UIView
-
-@property (nonatomic, strong) UITextView *inputTextFiel;
-@property (nonatomic, strong) UITextView *inputTextView;
+@property (nonatomic ,assign)id<FaceBoardDelegate>FaceDelegate;
+@property (nonatomic ,strong) NSMutableString *faceString;
 -(void)backFace;
 
 @end

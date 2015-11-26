@@ -35,9 +35,9 @@
 
 @implementation ChatAssistanceView
 
--(instancetype)init
+-(instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 216)];
+    self = [super initWithFrame:frame];
     
     if (self) {
         [self getAssistancePagecontrol];
