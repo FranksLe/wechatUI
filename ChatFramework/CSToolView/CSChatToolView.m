@@ -29,7 +29,6 @@
 @property (strong ,nonatomic) UIButton *talkBtn;
 @property (strong ,nonatomic) UIView *contentView;
 @property (strong ,nonatomic) UIImageView *contentBackground;
-@property (strong ,nonatomic) UITextView *contentTextView;
 @property (weak ,nonatomic) NSObject<CSChatToolViewKeyboardProtcol> *observer;
 @property (assign ,nonatomic) CGRect hiddenKeyboardRect;
 @property (assign ,nonatomic) CGRect showkeyboardRect;
@@ -128,7 +127,7 @@
         make.height.and.width.equalTo(@(KBUTTON_SIZE));
         make.right.equalTo(self).offset(-KGAP);
     }];
-    [_emojiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_emojiBtn mas_makeConstraints:^(MASConstraintMaker *make) { 
         make.top.equalTo(_messageBtn);
         make.height.and.width.equalTo(@(KBUTTON_SIZE));
         make.right.equalTo(_moreItemBtn.mas_left).offset(-KGAP*2);
@@ -152,6 +151,7 @@
     [_contentBackground mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.right.offset(0);
     }];
+    
 }
 #pragma mark 注册通知
 - (void)registerForKeyboardNotifications{
@@ -171,10 +171,6 @@
 -(void)keyboardWillShow:(NSNotification *)notif
 {
  
-    if ([_observer respondsToSelector:@selector(chatKeyboardWillShow)]) {
-        [_observer chatKeyboardWillShow];
-    }
-
     // 获取键盘的位置和大小
     CGRect keyboardBounds;
     [[notif.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
@@ -195,14 +191,17 @@
         self.frame = _showkeyboardRect;
         // 更改输入框的位置
     }];
-    
+    if ([_observer respondsToSelector:@selector(chatKeyboardWillShow:)]) {
+        [_observer chatKeyboardWillShow:keyboardBounds.size.height];
+    }
+
 }
 
 #pragma mark faceDelegat
 
 -(void)clickFaceBoard:(NSMutableString *)String
 {
-    _contentTextView.text = String;
+
 }
 
 #pragma mark 键盘隐藏的监听方法
@@ -212,22 +211,22 @@
         [_observer chatKeyboardWillHide];
     }
 
-//    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-//    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
     
-    // 动画改变位置
-//    [UIView animateWithDuration:[duration doubleValue] animations:^{
-//        [UIView setAnimationBeginsFromCurrentState:YES];
-//        [UIView setAnimationDuration:[duration doubleValue]];
-//        [UIView setAnimationCurve:[curve intValue]];
-//        // 更改输入框的位置
-//        _showkeyboardRect = _hiddenKeyboardRect;
-//        self.frame = _hiddenKeyboardRect;
-//
-//    }];
-    [UIView animateWithDuration:0.25 animations:^{
-        self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KASSIGANTVIEW_HEIGHT - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
+     // 动画改变位置
+    [UIView animateWithDuration:[duration doubleValue] animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:[duration doubleValue]];
+        [UIView setAnimationCurve:[curve intValue]];
+        // 更改输入框的位置
+        _showkeyboardRect = _hiddenKeyboardRect;
+        self.frame = _hiddenKeyboardRect;
+
     }];
+//    [UIView animateWithDuration:0.25 animations:^{
+//        self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KASSIGANTVIEW_HEIGHT - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
+//    }];
 }
 
 
@@ -271,6 +270,9 @@
             
         }];
         [_contentTextView resignFirstResponder];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KASSIGANTVIEW_HEIGHT - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
+        }];
     }
      _contentTextView.hidden = FALSE;
     _emojiBtn.selected = FALSE;
@@ -298,6 +300,9 @@
             
         }];
         [_contentTextView resignFirstResponder];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - KASSIGANTVIEW_HEIGHT - KINPUTVIEW_HEIGHT, _hiddenKeyboardRect.size.width, _hiddenKeyboardRect.size.height);
+        }];
        
     }
     _contentTextView.hidden = FALSE;
@@ -397,6 +402,7 @@
     [self.recordTimer invalidate];
     self.recordTimer = nil;
 }
+
 
 #pragma mark Public
 - (void)setKeyboardHidden:(BOOL)hidden{

@@ -10,13 +10,14 @@
 @class CSChatToolView;
 @protocol CSChatToolViewKeyboardProtcol <NSObject>
 @optional
-- (void)chatKeyboardWillShow;
+- (void)chatKeyboardWillShow:(CGFloat)keyBoardHeight;
 - (void)chatKeyboardWillHide;
 - (void)sendMessageWithText:(NSString *)text;
 - (void)sendSoundWithData:(NSData *)data;
 @end
 @interface CSChatToolView : UIView
 
+@property (strong ,nonatomic) UITextView *contentTextView;
 - (instancetype)init __unavailable;
 - (instancetype)initWithFrame:(CGRect)frame __unavailable;
 /**

@@ -14,6 +14,7 @@
     if (self) {
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.allowsSelection = NO;
+        self.userInteractionEnabled = YES;
     }
     return self;
 }
